@@ -1,9 +1,8 @@
 package pw.feed.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pw.feed.model.feed.Feed;
 import pw.feed.model.feed.FeedRepository;
 
@@ -13,15 +12,21 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("feed")
 public class FeedController {
-    private FeedRepository feedRepository;
+
+    private final FeedRepository feedRepository;
 
     @GetMapping
-    List<Feed> getAll(){
+    public List<Feed> getAll() {
         return feedRepository.findAll();
     }
 
+    @PostMapping
+    public ResponseEntity<Feed> saveFeed(@RequestBody Feed feed) {
+        return ResponseEntity.ok(feedRepository.save(feed));
+    }
+
     @GetMapping("/test")
-    String test() {
+    public String test() {
         return "test";
     }
 }

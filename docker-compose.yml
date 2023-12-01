@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  feed:
+    build: .
+    container_name: "feed"
+    ports:
+      - 8000:8080
+  mongodb:
+    image: mongo:7.0.4
+    environment:
+    #  - MONGO_INITDB_ROOT_USERNAME=feed
+    #  - MONGO_INITDB_ROOT_PASSWORD=passfeed
+    container_name: "mongodb"
+    ports:
+      - 27070:27017

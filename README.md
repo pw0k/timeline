@@ -1,7 +1,16 @@
 # feed
 
-classic system design example Twitter/Facebook timeline/feed 
+Classic system design example Twitter/Facebook timeline/feed 
 
-##how-to start:
-1.Clone
-2.`docker build -t feed .`
+## start:
+
+```shell
+docker-compose up -d --build feed
+```
+
+## save 
+localhost:8080/feed
+{
+"title" : "t1",
+"description" : "d1"
+}
