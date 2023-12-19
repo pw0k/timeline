@@ -12,28 +12,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import pw.timeline.model.feed.Feed;
-import pw.timeline.service.FeedService;
+import pw.timeline.model.post.Post;
+import pw.timeline.service.PostService;
 
 import java.util.List;
 
 //todo @JsonTest ??
-@WebMvcTest(FeedController.class)
-class FeedControllerTest {
+@WebMvcTest(PostController.class)
+class PostControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private FeedService feedService;
+    private PostService postService;
 
     @Test
-    void findAllShouldReturnValidFeeds() throws Exception {
+    void findAllShouldReturnValidPosts() throws Exception {
         //given
-        when(feedService.findAll()).thenReturn(getFeeds());
+        when(postService.findAll()).thenReturn(getPosts());
 
         //then
-        this.mockMvc.perform(get("/feed"))
+        this.mockMvc.perform(get("/posts"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
                 .andExpect(jsonPath("$.[0].id").value(1))
@@ -41,14 +41,14 @@ class FeedControllerTest {
     }
 
     @Test
-    void findByIdShouldReturnValidFeed() throws Exception {
+    void findByIdShouldReturnValidPost() throws Exception {
         //given
-        when(feedService.findById(1L)).thenReturn(getFeeds().get(0));
+        when(postService.findById(1L)).thenReturn(getPosts().get(0));
 
         //when
 
         //then
-        this.mockMvc.perform(get("/feed/1"))
+        this.mockMvc.perform(get("/posts/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.title").value("title1"))
@@ -56,19 +56,19 @@ class FeedControllerTest {
                 .andDo(print());
     }
 
-    private List<Feed> getFeeds() {
-        Feed feed1 = Feed.builder()
+    private List<Post> getPosts() {
+        Post post1 = Post.builder()
                 .id(1L)
                 .title("title1")
                 .description("desc1")
                 .build();
-        Feed feed2 = Feed.builder()
+        Post post2 = Post.builder()
                 .id(2L)
                 .title("title2")
                 .description("desc2")
                 .build();
 
-        return List.of(feed1, feed2);
+        return List.of(post1, post2);
     }
 
 }

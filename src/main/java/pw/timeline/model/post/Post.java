@@ -1,8 +1,7 @@
-package pw.timeline.model.feed;
+package pw.timeline.model.post;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.*;
 
 @Entity
@@ -12,11 +11,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-@Table(name = "tm_group")
-public class Group {
+public class Post {
 
     @Id
     Long id;
     String title;
     String description;
+    Long userId;
+    //todo dateeee )
 }

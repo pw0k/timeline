@@ -1,9 +1,8 @@
-package pw.timeline.model.feed;
+package pw.timeline.model.post;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FeedRepository extends JpaRepository<Feed, Long > {
-
+public interface PostRepository extends JpaRepository<Post, Long > {
 }

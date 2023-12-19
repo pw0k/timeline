@@ -1,4 +1,4 @@
-package pw.timeline.model.feed;
+package pw.timeline.model.post;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 // We dont want the H2 in-memory database
 // We will provide a custom `test container` as DataSource, don't replace it.
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class FeedRepositoryTest {
+class PostRepositoryTest {
 
     @Autowired
-    private FeedRepository feedRepository;
+    private PostRepository postRepository;
 
     // static, all tests share this postgres container
 //    @Container
@@ -30,33 +30,33 @@ class FeedRepositoryTest {
 
     @Test
     public void testSave() {
-        Feed feed1 = getFeeds().get(0);
-        feedRepository.save(feed1);
+        Post post1 = getPosts().get(0);
+        postRepository.save(post1);
 
-        Feed feed2 =  feedRepository.findById(1L).orElseThrow();
+        Post post2 =  postRepository.findById(1L).orElseThrow();
 
-        Long feedId = feed1.getId();
-        assertEquals(1L,feed1.getId());
-        assertEquals(1L, feed2.getId());
+        Long postId = post1.getId();
+        assertEquals(1L,post1.getId());
+        assertEquals(1L, post1.getId());
     }
 
     private void assertArrayEquals(long l, Long id) {
     }
 
 
-    private List<Feed> getFeeds() {
-        Feed feed1 = Feed.builder()
+    private List<Post> getPosts() {
+        Post post1 = Post.builder()
                 .id(1L)
                 .title("title1")
                 .description("desc1")
                 .build();
-        Feed feed2 = Feed.builder()
+        Post post2 = Post.builder()
                 .id(2L)
                 .title("title2")
                 .description("desc2")
                 .build();
 
-        return List.of(feed1, feed2);
+        return List.of(post1, post2);
     }
 
 }
