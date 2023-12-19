@@ -1,10 +1,10 @@
-package pw.feed;
+package pw.timeline;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FeedApplicationTests {
+class TimelineApplicationTests {
 
 	@Test
 	void contextLoads() {

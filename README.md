@@ -1,11 +1,11 @@
-# feed
+# timeline
 
 Classic system design example Twitter/Facebook timeline/feed 
 
 ## start:
 
 ```shell
-docker-compose up -d --build feed
+docker-compose up -d --build timeline
 ```
 
 ## save 
