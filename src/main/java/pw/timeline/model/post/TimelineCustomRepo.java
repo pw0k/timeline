@@ -42,6 +42,8 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 //todo jdbc template ??
+//todo analyze a check speed with union
+//todo inner join ??
 public class TimelineCustomRepo {
 
     private final EntityManager entityManager;

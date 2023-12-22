@@ -9,13 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-//TODO https://mkyong.com/spring-boot/spring-boot-spring-data-jpa-postgresql/#testing-rest-services-rest-assured-and-testcontainers
-//@DataJpaTest(showSql = false)
-// disabled or turn off the transactional and roll back
-// @Transactional(propagation = Propagation.NOT_SUPPORTED)
-// We dont want the H2 in-memory database
-// We will provide a custom `test container` as DataSource, don't replace it.
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+//todo need check @Manytomany cascade operations
 class PostRepositoryTest {
 
     @Autowired

@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 //todo @JsonTest ??
+//todo check error - not found for example and 201 created
 @WebMvcTest(PostController.class)
 class PostControllerTest {
 
