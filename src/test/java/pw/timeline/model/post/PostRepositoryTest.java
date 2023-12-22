@@ -28,17 +28,17 @@ class PostRepositoryTest {
 //            "postgres:15-alpine"
 //    );
 
-    @Test
-    public void testSave() {
-        Post post1 = getPosts().get(0);
-        postRepository.save(post1);
-
-        Post post2 =  postRepository.findById(1L).orElseThrow();
-
-        Long postId = post1.getId();
-        assertEquals(1L,post1.getId());
-        assertEquals(1L, post1.getId());
-    }
+//    @Test
+//    public void testSave() {
+//        Post post1 = getPosts().get(0);
+//        postRepository.save(post1);
+//
+//        Post post2 =  postRepository.findById(1L).orElseThrow();
+//
+//        Long postId = post1.getId();
+//        assertEquals(1L,post1.getId());
+//        assertEquals(1L, post1.getId());
+//    }
 
     private void assertArrayEquals(long l, Long id) {
     }

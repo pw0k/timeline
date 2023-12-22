@@ -1,14 +1,15 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/timelinedb
-    #TODO Vault or env
+    # TODO: Vault or env
     username: timelineusr
     password: timelinepwd
   jpa:
-#    hibernate:
-#      ddl-auto: validate
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    # Enable SQL logging
+    #show-sql: true
+    # Format the SQL statements for better readability (optional)
+    #properties:
+    #  hibernate:
+    #    format_sql: true
   liquibase:
     change-log: classpath:db/changelog.xml

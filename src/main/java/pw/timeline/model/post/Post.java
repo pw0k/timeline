@@ -1,8 +1,9 @@
 package pw.timeline.model.post;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -14,9 +15,12 @@ import lombok.*;
 public class Post {
 
     @Id
-    Long id;
-    String title;
-    String description;
-    Long userId;
-    //todo dateeee )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String description;
+    private Long userId;
+    private Long groupId;
+    @Column(insertable = false, updatable = false)
+    private LocalDateTime createdAt;
 }

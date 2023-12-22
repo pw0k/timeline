@@ -1,35 +1,46 @@
 --liquibase formatted sql
 
 --changeset timeline:1
-create table tm_user
+CREATE TABLE tm_user
 (
-    id   bigserial primary key,
-    name text
+    id   BIGSERIAL primary key,
+    name TEXT NOT NULL
 );
 
 --changeset timeline:2
-create table tm_group
+CREATE TABLE tm_group
 (
-    id bigserial primary key,
-    title text NOT NULL,
-    description text NOT NULL
+    id          BIGSERIAL primary key,
+    groupname   TEXT NOT NULL,
+    description TEXT NOT NULL
 );
 
 --changeset timeline:3
-create table post
+
+CREATE TABLE post
 (
-    id bigserial primary key,
-    title text NOT NULL,
-    description text NOT NULL,
-    user_id BIGINT REFERENCES tm_user(id)
+    id          BIGSERIAL primary key,
+    title       TEXT NOT NULL,
+    description TEXT NOT NULL,
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id     BIGINT REFERENCES tm_user (id),
+    group_id    BIGINT REFERENCES tm_group (id),
+    CONSTRAINT post_check_user_or_group_not_null
+        CHECK ((user_id IS NULL AND group_id IS NOT NULL) OR
+               (user_id IS NOT NULL AND group_id IS NULL))
 );
 
 --changeset timeline:4
-create table user_follow
+CREATE TABLE follow
 (
-    id bigserial primary key,
-    user_id BIGINT REFERENCES tm_user(id),
-    group_id BIGINT REFERENCES tm_group(id)
+    follower_id       BIGINT NOT NULL REFERENCES tm_user (id),
+    followee_user_id  BIGINT REFERENCES tm_user (id),
+    followee_group_id BIGINT REFERENCES tm_group (id),
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (follower_id, followee_user_id, followee_group_id),
+    CONSTRAINT follow_check_followee_user_id_or_followee_group_id_not_null
+        CHECK ((followee_user_id IS NULL AND followee_group_id IS NOT NULL) OR
+               (followee_user_id IS NOT NULL AND followee_group_id IS NULL))
 );
 
 

@@ -1,9 +1,10 @@
 package pw.timeline.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import pw.timeline.model.follow.Follow;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,6 +17,16 @@ import lombok.*;
 public class User {
 
     @Id
-    Long id;
-    String name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @OneToMany(mappedBy = "follower")
+    private Set<Follow> followerSet;
+
+    @OneToMany(mappedBy = "followeeUser")
+    private Set<Follow> followeeSet;
+
 }
